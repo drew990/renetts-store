@@ -1,0 +1,7 @@
+.UC-Style {
+  min-height: 80vh;
+  background-color: var(--secondary-color);
+  color: var(--secondary-color-text);
+  text-align: center;
+  padding: 20vh 30vw;
+}

@@ -1,0 +1,6 @@
+.Contact-Style {
+  background-color: var(--secondary-color);
+  min-height: 80vh;
+  margin-top: 58px;
+  padding: 10vh 20vw;
+}

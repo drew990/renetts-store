@@ -1,0 +1,94 @@
+.Hero-img {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../assets/Hero/Hero-Image.jpg);
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  height: 80vh;
+  min-width: 100%;
+  color: #fff;
+}
+
+.Hero-Capture {
+  padding: 20vh 30vw 0 30vw;
+}
+
+.Hero-Trans {
+  padding: 5vh 0 1vh 0;
+  background-color: var(--secondary-color);
+  text-align: center;
+}
+
+.button-outline {
+  border: #fff 1.75px solid;
+  width: 150px;
+  margin: 3vh auto 0 auto;
+  padding: 0vh 0vw;
+}
+
+.button {
+  width: 150px;
+  background-color: #fff;
+  padding: 8px 0vw;
+  margin: 0;
+  border: none;
+}
+
+.Block-Style {
+  width: 100vh;
+  max-height: 80vh;
+  min-height: 60vh;
+}
+.Block-1 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+    url(../../assets/Home-Block/IMGG_1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  width: 100vw;
+  height: 60vh;
+  vertical-align: middle;
+  display: table-cell;
+  overflow: hidden;
+}
+
+.Block-1:hover {
+  color: #fff;
+}
+
+.Block-2 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+    url(../../assets/Home-Block/Img_2.jpg);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  width: 100vw;
+  height: 60vh;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.Block-2:hover {
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .Hero-img {
+    margin-top: 40px;
+  }
+  .Hero-Capture {
+    padding: 10vh 10vw 0 10vw;
+  }
+  .Block-1 {
+    width: 150vw;
+  }
+  .Block-2 {
+    width: 150vw;
+  }
+}

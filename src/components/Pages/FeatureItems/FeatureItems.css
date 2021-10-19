@@ -1,0 +1,6 @@
+.featureItems-Style {
+  min-height: 80vh;
+  background-color: var(--secondary-color);
+  text-align: center;
+  padding: 20vh 10vw;
+}
