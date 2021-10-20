@@ -2,10 +2,18 @@ import React from "react";
 import "./contact.css";
 import { Form, Row, Col } from "react-bootstrap";
 import { motion } from "framer-motion";
+import { animationOne, transition } from "../../../animations";
 
 const contact = () => {
   return (
-    <div className="Contact-Style">
+    <motion.div
+      className="Contact-Style"
+      initial="out"
+      animate="in"
+      exit="out"
+      variants={animationOne}
+      transition={transition}
+    >
       <Row>
         <Col lg md>
           <div>
@@ -73,7 +81,7 @@ const contact = () => {
           </div>
         </Col>
       </Row>
-    </div>
+    </motion.div>
   );
 };
 

@@ -2,7 +2,7 @@ import "./App.css";
 import Product from "./components/Products/Products";
 import Navbar from "./components/Navbar/Navbar";
 import { commerce } from "./lib/commerce";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { animationOne, transition } from "./animations/index";
 import { useEffect, useState } from "react";
 import Cart from "./components/Cart/Cart";
@@ -10,26 +10,37 @@ import Checkout from "./components/CheckoutForm/Checkout/Checkout";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Pages/Home";
-import Shop from "./components/Pages/Shop/Shop";
 import Footer from "./components/Footer/Footer";
-import UnderConstruction from "./components/UnderConstruction";
-//import FeatureItems from "./components/Pages/FeatureItems/FeatureItems";
+//import UnderConstruction from "./components/UnderConstruction";
+import FeatureItems from "./components/Pages/FeatureItems/FeatureItems";
 import Contact from "./components/Pages/Contact/contact";
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
 
 function App() {
   const [products, setProducts] = useState([]);
-  //const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
-  /*
-  const fetchCategories = async () => {
-    const { data } = await commerce.categories.list();
+  const fetchProductCategories = async () => {
+    const { data: products } = await commerce.products.list();
+    const { data: categoryData } = await commerce.categories.list();
 
-    setCategories(data);
-  };*/
+    const productsPerCategory = categoryData.reduce((acc, category) => {
+      return [
+        ...acc,
+        {
+          ...category,
+          productsData: products.filter((product) =>
+            product.categories.find((cat) => cat.id === category.id)
+          ),
+        },
+      ];
+    }, []);
+
+    setCategories(productsPerCategory);
+  };
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -89,55 +100,73 @@ function App() {
   useEffect(() => {
     fetchProducts();
     fetchCart();
-    //fetchCategories();
+    fetchProductCategories();
   }, []);
-
-  console.log(cart);
 
   return (
     <Router>
       <div style={{ overflowX: "hidden" }}>
         <ScrollToTop />
         <Navbar totalItems={cart.total_items} />
-        <Switch>
-          <Route exact path="/">
-            <motion.div variants={animationOne} transition={transition}>
-              <Home />
-              <Product products={products} onAddToCart={handleAddToCart} />
-            </motion.div>
-          </Route>
-          <Route exact path="/shop">
-            <Shop />
-            <Product products={products} onAddToCart={handleAddToCart} />
-          </Route>
-          <Route exact path="/featured-items">
-            <UnderConstruction />
-            {/*            <FeatureItems
-              categories={categories}
-              products={products}
-              onAddToCart={handleAddToCart}
-            /> */}
-          </Route>
-          <Route exact path="/contact">
-            <Contact />
-          </Route>
-          <Route exact path="/cart">
-            <Cart
-              cart={cart}
-              handleUpdateCartQty={handleUpdateCartQty}
-              handleRemoveFromCart={handleRemoveFromCart}
-              handleEmptyCart={handleEmptyCart}
-            />
-          </Route>
-          <Route exact path="/checkout">
-            <Checkout
-              cart={cart}
-              order={order}
-              onCaptureCheckout={handleCaptureCheckout}
-              error={errorMessage}
-            />
-          </Route>
-        </Switch>
+        <AnimatePresence>
+          <Switch>
+            <Route exact path="/">
+              <motion.div
+                initial="out"
+                animate="in"
+                exit="out"
+                variants={animationOne}
+                transition={transition}
+              >
+                <Home />
+                <FeatureItems
+                  categories={categories}
+                  onAddToCart={handleAddToCart}
+                />
+                <Product products={products} onAddToCart={handleAddToCart} />
+              </motion.div>
+            </Route>
+            <Route exact path="/shop">
+              <motion.div
+                initial="out"
+                animate="in"
+                exit="out"
+                variants={animationOne}
+                transition={transition}
+              >
+                <Product products={products} onAddToCart={handleAddToCart} />
+              </motion.div>
+            </Route>
+            <Route exact path="/featured-items">
+              {/*<UnderConstruction />*/}
+              {
+                <FeatureItems
+                  categories={categories}
+                  onAddToCart={handleAddToCart}
+                />
+              }
+            </Route>
+            <Route exact path="/contact">
+              <Contact />
+            </Route>
+            <Route exact path="/cart">
+              <Cart
+                cart={cart}
+                handleUpdateCartQty={handleUpdateCartQty}
+                handleRemoveFromCart={handleRemoveFromCart}
+                handleEmptyCart={handleEmptyCart}
+              />
+            </Route>
+            <Route exact path="/checkout">
+              <Checkout
+                cart={cart}
+                order={order}
+                onCaptureCheckout={handleCaptureCheckout}
+                error={errorMessage}
+              />
+            </Route>
+          </Switch>
+        </AnimatePresence>
         <Footer />
       </div>
     </Router>

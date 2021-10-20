@@ -57,16 +57,6 @@ const Home = () => {
           </motion.a>
         </Col>
       </Row>
-      <div className="Hero-Trans">
-        <h2>Shop</h2>
-        <div
-          style={{
-            border: "1px solid black",
-            borderRadius: "5rem",
-            margin: "1vh 10vw 5vh 10vw",
-          }}
-        />
-      </div>
     </motion.div>
   );
 };

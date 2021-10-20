@@ -40,7 +40,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     };
 
     generateToken();
-  }, [cart]);
+  }, [cart, history]);
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -54,7 +54,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
   const timeout = () => {
     setTimeout(() => {
       setIsFinished(true);
-    }, 30000);
+    }, 3000000);
   };
 
   let Confirmation = () =>
@@ -63,12 +63,16 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         <div>
           <Typography variant="h5">
             Thank you for your purchase, {order.customer.firstname}
-            {order.customer.lastname}
           </Typography>
           <Divider className={classes.divider} />
           <Typography variant="subtitle2">
             Order ref: {order.customer_reference}
           </Typography>
+          <p>
+            Check your email for a confirmation submission. If it doesn't appear
+            within a few minutes of pruchase, check your spam, or contact us for
+            support. Enjoy your day!
+          </p>
         </div>
         <br />
         <Button variant="outlined" type="button" component={Link} to="/">

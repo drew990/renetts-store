@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import "./Cart.css";
 import { motion } from "framer-motion";
+import { animationOne, transition } from "../../animations";
 
 const Cart = ({
   cart,
@@ -22,6 +23,7 @@ const Cart = ({
         marginTop: "64px",
         textAlign: "center",
         paddingTop: "30vh ",
+        backgroundColor: "#f7e9f7",
       }}
     >
       <h2>
@@ -128,7 +130,17 @@ const Cart = ({
       </div>
     );
 
-  return <>{!cart.line_items.length ? <EmptyCart /> : <FilledCart />}</>;
+  return (
+    <motion.div
+      initial="out"
+      animate="in"
+      exit="out"
+      variants={animationOne}
+      transition={transition}
+    >
+      {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
+    </motion.div>
+  );
 };
 
 export default Cart;

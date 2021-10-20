@@ -1,6 +1,17 @@
 .featureItems-Style {
-  min-height: 80vh;
+  min-height: 85vh;
   background-color: var(--secondary-color);
+
   text-align: center;
-  padding: 20vh 10vw;
+  padding: calc(10vh + 40px) 5vw 0vh 5vw;
+}
+
+.carousel-inner {
+  width: 80% !important;
+  margin: 0 auto !important;
+}
+@media (max-width: 600px) {
+  .featureItems-Style {
+    padding: 5vh 5vw 10vh 5vw;
+  }
 }
