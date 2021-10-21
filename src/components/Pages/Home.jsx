@@ -20,7 +20,7 @@ const Home = () => {
                   x: 10,
                   y: -10,
                 }}
-                whileTap={{ scale: 0.9 }}
+                whileTap={{ x: 0, y: 0, scale: 0.9 }}
                 whileHover={{
                   x: 0,
                   y: 0,
@@ -49,6 +49,7 @@ const Home = () => {
         <Col md style={{ padding: 0, overflow: "hidden" }}>
           <motion.a
             whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 1.05 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="Block-2"
             href="/featured-items"

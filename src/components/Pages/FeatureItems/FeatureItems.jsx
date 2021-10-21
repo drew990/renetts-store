@@ -47,8 +47,8 @@ function FeatureItems({ onAddToCart, categories }) {
                         xs={10}
                         style={{ margin: "0 auto", textAlign: "center" }}
                       >
-                        <h1>{product.name} </h1>
-                        <h2>{product.price.formatted_with_symbol}</h2>
+                        <h2>{product.name} </h2>
+                        <h3>{product.price.formatted_with_symbol}</h3>
                         <div
                           style={{
                             border: "1px solid black",
